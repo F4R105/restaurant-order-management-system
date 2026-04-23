@@ -5,7 +5,7 @@
             <tr>
                 <th>Item</th>
                 <th>Unit price</th>
-                <th>Actions</th>
+                <th colspan="3">Actions</th>
             </tr>
         </thead>
         <tbody>
