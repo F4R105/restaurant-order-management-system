@@ -14,8 +14,8 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::controller(ItemController::class)->group(function () {
     Route::get('/items', 'index')->name('items.index');
-    Route::get('/items/{item}', 'show')->name('items.show');
     Route::get('/items/create', 'create')->name('items.create');
+    Route::get('/items/{item}', 'show')->name('items.show');
     Route::post('/items', 'store')->name('items.store');
     Route::get('/items/{item}/edit', 'edit')->name('items.edit');
     Route::put('/items', 'update')->name('items.update');

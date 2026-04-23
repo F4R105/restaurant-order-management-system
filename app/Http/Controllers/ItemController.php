@@ -29,7 +29,18 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $itemData = $request->validate([
+            'name' => ['required'],
+            'unit_price' => ['required', 'integer', 'min:0', 'max:10000']
+        ]);
+
+        $newItem = Item::create($itemData);
+
+        if (!$newItem) {
+            return back()->withErrors(['unit_price' => 'Failed to create new item']);
+        }
+
+        return redirect()->route('items.show', $newItem);
     }
 
     /**
@@ -53,7 +64,14 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $itemData = $request->validate([
+            'name' => ['required'],
+            'unit_price' => ['required', 'integer', 'min:0', 'max:10000']
+        ]);
+
+        $item->update($itemData);
+
+        return redirect()->route('items.show', $item);
     }
 
     /**
@@ -62,6 +80,6 @@ class ItemController extends Controller
     public function destroy(Item $item)
     {
         $item->delete();
-        return redirect('items.index');
+        return redirect()->route('items.index');
     }
 }

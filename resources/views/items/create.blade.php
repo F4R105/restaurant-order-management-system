@@ -1,3 +1,12 @@
-<div>
-    <!-- Act only according to that maxim whereby you can, at the same time, will that it should become a universal law. - Immanuel Kant -->
-</div>
+<x-auth-layout title="Add item">
+    <form action="{{ route('items.store') }}" method="post">
+        @csrf
+        <input type="text" name="name" id="name" placeholder="Item name" value="{{ old('name') }}" required>
+        <input type="number" name="unit_price" id="unit_price" placeholder="Unit price" value="{{ old('unit_price') }}"
+            required>
+        @error('unit_price')
+            <p style="color: red">{{ $messaege }}</p>
+        @enderror
+        <button type="submit">Add item</button>
+    </form>
+</x-auth-layout>

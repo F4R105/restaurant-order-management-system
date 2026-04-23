@@ -9,5 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     /** @use HasFactory<\Database\Factories\ItemFactory> */
+    protected $fillable = ['name', 'unit_price'];
+    
     use HasFactory;
 }
