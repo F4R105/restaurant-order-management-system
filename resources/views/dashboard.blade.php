@@ -1,4 +1,4 @@
-<x-main-layout>
-    <h1>Welcome</h1>
-    <x-logout-button />
-</x-main-layout>
+<x-auth-layout title="Dashboard">
+    <h1>Welcome to the dashboard</h1>
+    <a href="{{ route('items.index') }}">View items</a>
+</x-auth-layout>

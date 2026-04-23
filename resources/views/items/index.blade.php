@@ -1,3 +1,7 @@
-<div>
-    <!-- When there is no desire, all things are at peace. - Laozi -->
-</div>
+<x-auth-layout>
+    <ul>
+        @foreach ($items as $item)
+            <li>{{ $item->name }}</li>
+        @endforeach
+    </ul>
+</x-auth-layout>
