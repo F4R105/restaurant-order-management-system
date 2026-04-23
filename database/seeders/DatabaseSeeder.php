@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Item;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -24,5 +25,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'super@admin.com',
             'phone_number' => '0700 000 000'
         ]);
+
+        Item::factory(32)->create();
     }
 }
