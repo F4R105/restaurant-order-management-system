@@ -28,7 +28,7 @@
     </ul>
     <div style="margin-left: auto;">
         <div>
-            <span>{{ auth()->user()->fullName() }} as {{ auth()->user()->role }}</span>
+            <span>{{ auth()->user()->fullName() }} as {{ auth()->user()->getRole() }}</span>
         </div>
         <x-logout-button />
     </div>

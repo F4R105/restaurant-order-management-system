@@ -1,39 +1,42 @@
 <x-auth-layout title="Order Details">
     <div>
         <h1>Order #{{ $order->id }}</h1>
-        <p><a href="{{ route('orders.index') }}">Back to Orders</a></p>
+        <p><a href="{{ route('orders.index') }}" class="hover:text-blue-500">Back to Orders</a></p>
 
         <div style="margin-bottom: 20px;">
             <p><strong>Created By:</strong> {{ $order->created_by }}</p>
-            <p><strong>Served By:</strong> {{ $order->served_by ?? 'Pending' }}</p>
             <p><strong>Created At:</strong> {{ $order->created_at->format('Y-m-d H:i:s') }}</p>
-            <p><strong>Total Price:</strong> ${{ number_format($order->price, 2) }}</p>
+            <p><strong>Served By:</strong> {{ $order->served_by ?? 'Pending' }}</p>
+            <p><strong>Served At:</strong> {{ $order->served_at?->format('Y-m-d H:i:s') ?? 'Pending' }}</p>
+            <p><strong>Total Price:</strong> TZS {{ number_format($order->price, 0) }}/=</p>
         </div>
 
         <h3>Order Items</h3>
-        <table border="1" cellpadding="5" style="border-collapse: collapse; width: 100%;">
+        <table class="table-auto border-collapse border border-gray-400">
             <thead>
                 <tr>
-                    <th>Item Name</th>
-                    <th>Unit Price</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
+                    <th class="border border-gray-400">Item Name</th>
+                    <th class="border border-gray-400">Unit Price</th>
+                    <th class="border border-gray-400">Quantity</th>
+                    <th class="border border-gray-400">Subtotal</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($order->orderItems as $item)
                     <tr>
-                        <td>{{ $item->name }}</td>
-                        <td>${{ number_format($item->unit_price, 2) }}</td>
-                        <td>{{ $item->quantity }}</td>
-                        <td>${{ number_format($item->unit_price * $item->quantity, 2) }}</td>
+                        <td class="border border-gray-400">{{ $item->name }}</td>
+                        <td class="border border-gray-400">TZS {{ number_format($item->unit_price, 0) }}/=</td>
+                        <td class="border border-gray-400">{{ $item->quantity }}</td>
+                        <td class="border border-gray-400">TZS
+                            {{ number_format($item->unit_price * $item->quantity, 0) }}/=</td>
                     </tr>
                 @endforeach
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="3" align="right"><strong>Total:</strong></td>
-                    <td><strong>${{ number_format($order->price, 2) }}</strong></td>
+                    <td class="border border-gray-400"><strong>TZS {{ number_format($order->price, 0) }}/=</strong>
+                    </td>
                 </tr>
             </tfoot>
         </table>

@@ -11,24 +11,27 @@ class CartController extends Controller
     {
         $cart = session()->get('order_cart', []);
         
+        $currentQuantity = 0;
         $found = false;
         foreach ($cart as &$cartItem) {
             if ($cartItem['item_id'] == $item->id) {
                 $cartItem['quantity']++;
+                $currentQuantity = $cartItem['quantity'];
                 $found = true;
                 break;
             }
         }
         
         if (!$found) {
+            $currentQuantity = 1;
             $cart[] = [
                 'item_id' => $item->id,
-                'quantity' => 1,
+                'quantity' => $currentQuantity,
             ];
         }
         
         session()->put('order_cart', $cart);
         
-        return redirect()->route('items.index')->with('success', "{$item->name} added to current order.");
+        return redirect()->route('items.index')->with('success', "{$currentQuantity}x {$item->name} added in cart.");
     }
 }
