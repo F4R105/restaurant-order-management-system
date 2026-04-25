@@ -1,5 +1,7 @@
 <x-auth-layout title="Items">
     <a href="{{ route('items.create') }}">Add new item</a>
+    <a href="{{ route('orders.create') }}">Create new order</a>
+
     <table>
         <thead>
             <tr>
