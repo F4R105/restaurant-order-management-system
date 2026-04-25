@@ -16,7 +16,8 @@ return new class extends Migration
             $table->id();
             $table->integer('price');
             $table->string('created_by');
-            $table->string('served_by');
+            $table->string('served_by')->nullable();
+            $table->timestamp('served_at')->nullable();
             $table->timestamps();
         });
 
@@ -26,7 +27,6 @@ return new class extends Migration
             $table->integer('unit_price');
             $table->integer('quantity')->default(1);
             $table->foreignIdFor(Order::class);
-            $table->timestamps();
         });
     }
 

@@ -12,7 +12,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::with('orderItems')->latest()->paginate(10);
+        return view('orders.index', compact('orders'));
     }
 
     /**
@@ -20,7 +21,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('orders.create');
     }
 
     /**
@@ -28,7 +29,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // This is handled by Livewire, but we keep it for consistency or fallback
     }
 
     /**
@@ -36,7 +37,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $order->load('orderItems');
+        return view('orders.show', compact('order'));
     }
 
     /**
@@ -60,6 +62,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->delete();
+        return redirect()->route('orders.index')->with('success', 'Order deleted');
     }
 }

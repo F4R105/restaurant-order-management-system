@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('login');
@@ -23,9 +24,18 @@ Route::controller(ItemController::class)->middleware('auth')->group(function () 
     Route::delete('/items/{item}', 'destroy')->name('items.destroy');
 });
 
-Route::controller(OrderController::class)->group(function () {
+Route::controller(OrderController::class)->middleware('auth')->group(function () {
     Route::get('/orders', 'index')->name('orders.index');
     Route::get('/orders/create', 'create')->name('orders.create');
     Route::get('/orders/{order}', 'show')->name('orders.show');
     Route::post('/orders/store', 'store')->name('orders.store');
 });
+
+Route::controller(OrderController::class)->middleware('auth')->group(function () {
+    Route::get('/orders', 'index')->name('orders.index');
+    Route::get('/orders/create', 'create')->name('orders.create');
+    Route::get('/orders/{order}', 'show')->name('orders.show');
+    Route::post('/orders/store', 'store')->name('orders.store');
+});
+
+Route::get('/cart/add/{item}', [CartController::class, 'add'])->name('cart.add')->middleware('auth');

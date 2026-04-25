@@ -1,36 +1,33 @@
 <x-auth-layout title="Items">
-    <a href="{{ route('items.create') }}">Add new item</a>
-    <a href="{{ route('orders.create') }}">Create new order</a>
+    <div>
+        <h1 class="font-bold">Items List</h1>
+        <a href="{{ route('items.create') }}" class="hover:text-blue-500">Add new item</a>
+        
+        @if(session('success'))
+            <div style="color: green; margin: 10px 0;">{{ session('success') }}</div>
+        @endif
 
-    <table>
-        <thead>
-            <tr>
-                <th>Item</th>
-                <th>Unit price</th>
-                <th colspan="3">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($items as $item)
+        <table class="border">
+            <thead>
                 <tr>
-                    <td>{{ $item->name }}</td>
-                    <td>{{ $item->unit_price }}</td>
-                    <td>
-                        <a href="{{ route('items.show', $item) }}">View item</a>
-                    </td>
-                    <td>
-                        <a href="{{ route('items.edit', $item) }}">Edit item</a>
-                    </td>
-                    <td>
-                        <form action="{{ route('items.destroy', $item) }}" method="post"
-                            onsubmit="return confirm('Are you sure?')">
-                            @csrf
-                            @method('delete')
-                            <button type="submit">Delete item</button>
-                        </form>
-                    </td>
+                    <th>Item</th>
+                    <th>Unit price</th>
+                    <th colspan="4">Actions</th>
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($items as $item)
+                    <tr>
+                        <td><a href="{{ route('items.show', $item) }}" class="hover:text-blue-500">{{ $item->name }}</a></td>
+                        <td>TZS {{ $item->unit_price }}/=</td>
+                        <td>
+                            <form action="{{ route('cart.add', $item) }}" method="GET" style="display:inline;">
+                                <button type="submit" class="hover:text-blue-500 hover:cursor-pointer">Add to cart</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </x-auth-layout>

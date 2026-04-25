@@ -23,9 +23,10 @@ class DatabaseSeeder extends Seeder
             'last_name' => 'Admin',
             'username' => 'admin',
             'email' => 'super@admin.com',
-            'phone_number' => '0700 000 000'
+            'phone_number' => '0700 000 000',
+            'role' => 'super_admin'
         ]);
 
-        Item::factory(32)->create();
+        // Item::factory(32)->create();
     }
 }

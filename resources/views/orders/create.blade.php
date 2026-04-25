@@ -1,3 +1,6 @@
-<div>
-    <!-- Do what you can, with what you have, where you are. - Theodore Roosevelt -->
-</div>
+<x-auth-layout title="Create Order">
+    <div>
+        <h1 class="font-bold">Create Order</h1>
+        <livewire:cart />
+    </div>
+</x-auth-layout>
