@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('login');
@@ -26,16 +27,22 @@ Route::controller(ItemController::class)->middleware('auth')->group(function () 
 
 Route::controller(OrderController::class)->middleware('auth')->group(function () {
     Route::get('/orders', 'index')->name('orders.index');
-    Route::get('/orders/create', 'create')->name('orders.create');
     Route::get('/orders/{order}', 'show')->name('orders.show');
+    Route::get('/orders/create', 'create')->name('orders.create');
     Route::post('/orders/store', 'store')->name('orders.store');
+    Route::patch('/orders/{order}', 'update')->name('orders.update');
 });
 
-Route::controller(OrderController::class)->middleware('auth')->group(function () {
-    Route::get('/orders', 'index')->name('orders.index');
-    Route::get('/orders/create', 'create')->name('orders.create');
-    Route::get('/orders/{order}', 'show')->name('orders.show');
-    Route::post('/orders/store', 'store')->name('orders.store');
+Route::controller(UserController::class)->middleware('auth')->group(function () {
+    Route::get('/users', 'index')->name('users.index');
+    Route::get('/users/create', 'create')->name('users.create');
+    Route::post('/users/store', 'store')->name('users.store');
+    Route::get('/users/edit', 'edit')->name('users.edit');
+    Route::put('/users/{user}', 'update')->name('users.update');
+    Route::get('/users/{user}', 'show')->name('users.show');
+    Route::delete('/users/{user}', 'destroy')->name('users.destroy');
 });
 
-Route::get('/cart/add/{item}', [CartController::class, 'add'])->name('cart.add')->middleware('auth');
+Route::controller(CartController::class)->middleware('auth')->group(function () {
+    Route::get('/cart/add/{item}', 'add')->name('cart.add');
+});

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class OrderController extends Controller
 {
@@ -12,6 +15,8 @@ class OrderController extends Controller
      */
     public function index()
     {
+        Gate::authorize('viewAny', Auth::user());
+
         $orders = Order::with('orderItems')->latest()->paginate(10);
         return view('orders.index', compact('orders'));
     }
@@ -21,6 +26,8 @@ class OrderController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', Auth::user());
+
         return view('orders.create');
     }
 
@@ -29,6 +36,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('create', Auth::user());
         // This is handled by Livewire, but we keep it for consistency or fallback
     }
 
@@ -37,6 +45,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        Gate::authorize('view', Auth::user());
+
         $order->load('orderItems');
         return view('orders.show', compact('order'));
     }
@@ -46,7 +56,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        Gate::authorize('edit', Auth::user());
     }
 
     /**
@@ -54,7 +64,18 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        Gate::authorize('update', Auth::user());
+
+        if($order->isServed()) return back()->with('error', 'Order already served!..');
+
+        $updated = $order->update([
+            'served_by' => $request->user()->getFullName(),
+            'served_at' => Carbon::now()
+        ]);
+
+        if(!$updated) return back()->with('error', 'Failed to serve order');
+
+        return back()->with('success', 'Order served successfully');
     }
 
     /**
@@ -62,6 +83,10 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
+        Gate::authorize('delete', Auth::user());
+        
+        if($order->isServed()) return back()->with('error', 'Order already served!..');
+        
         $order->delete();
         return redirect()->route('orders.index')->with('success', 'Order deleted');
     }

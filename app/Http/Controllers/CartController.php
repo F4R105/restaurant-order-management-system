@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CartController extends Controller
 {
     public function add(Item $item)
     {
+        if(!Gate::allows('create-order')) return back()->with('error', 'Access denied');
+
         $cart = session()->get('order_cart', []);
         
         $currentQuantity = 0;

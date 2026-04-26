@@ -7,6 +7,6 @@
         @error('unit_price')
             <p style="color: red">{{ $message }}</p>
         @enderror
-        <button type="submit">Add item</button>
+        <button type="submit" class="hover:text-blue-500 cursor-pointer">Add item</button>
     </form>
 </x-auth-layout>

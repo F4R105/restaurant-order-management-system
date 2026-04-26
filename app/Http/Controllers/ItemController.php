@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ItemController extends Controller
 {
@@ -12,6 +13,8 @@ class ItemController extends Controller
      */
     public function index()
     {
+        Gate::authorize('viewAny', Auth::user());
+
         $items = Item::all();
         return view('items.index', ['items' => $items]);
     }
@@ -21,6 +24,8 @@ class ItemController extends Controller
      */
     public function create()
     {
+        Gate::authorize('create', Auth::user());
+
         return view('items.create');
     }
 
@@ -29,6 +34,8 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('create', Auth::user());
+
         $itemData = $request->validate([
             'name' => ['required'],
             'unit_price' => ['required', 'integer', 'min:0', 'max:10000']
@@ -48,6 +55,8 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
+        Gate::authorize('view', Auth::user());
+
         return view('items.show', ['item' => $item]);
     }
 
@@ -56,6 +65,8 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
+        Gate::authorize('update', Auth::user());
+
         return view('items.edit', ['item' => $item]);
     }
 
@@ -64,6 +75,8 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
+        Gate::authorize('update', Auth::user());
+
         $itemData = $request->validate([
             'name' => ['required'],
             'unit_price' => ['required', 'integer', 'min:0', 'max:10000']
@@ -79,6 +92,8 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
+        Gate::authorize('delete', Auth::user());
+
         $item->delete();
         return redirect()->route('items.index');
     }

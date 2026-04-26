@@ -38,7 +38,32 @@
                     <td class="border border-gray-400"><strong>TZS {{ number_format($order->price, 0) }}/=</strong>
                     </td>
                 </tr>
+                @can('delete', App\Models\Order::class)
+                    @if (!$order->isServed())
+                        <tr>
+                            <td colspan="4">
+                                <form action="{{ route('orders.destroy', $order) }}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="hover:text-blue-500 cursor-pointer">Delete order</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endif
+                @endcan
             </tfoot>
         </table>
     </div>
+
+    @can('serve-order')
+        @if (!$order->isServed())
+            <div>
+                <form action="{{ route('orders.update', $order) }}" method="post" onsubmit="confirm('Are you sure?..')">
+                    @csrf
+                    @method('patch')
+                    <button type="submit" class="hover:text-blue-500 cursor-pointer">Serve order</button>
+                </form>
+            </div>
+        @endif
+    @endcan
 </x-auth-layout>

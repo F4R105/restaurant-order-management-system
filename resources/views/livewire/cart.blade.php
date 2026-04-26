@@ -2,7 +2,9 @@
     <form wire:submit="submit">
 
         <div>
-            @if (count($orderItems) > 0)
+            @if (count($orderItems) <= 0)
+                <p>No items in your cart. <a href="{{ route('items.index') }}" class="hover:text-blue-500">Go to Items</a></p>
+            @else
                 <table class="table-auto border-collapse border border-gray-400">
                     <thead>
                         <tr>
@@ -34,7 +36,8 @@
                                     {{ $item && isset($orderItem['quantity']) ? number_format($item->unit_price * $orderItem['quantity'], 0) : '0' }}/=
                                 </td>
                                 <td class="border border-gray-400">
-                                    <button type="button" wire:click="removeItem({{ $index }})" class="hover:text-orange-600">Remove</button>
+                                    <button type="button" wire:click="removeItem({{ $index }})"
+                                        class="hover:text-orange-600">Remove</button>
                                 </td>
                             </tr>
                         @endforeach
@@ -59,8 +62,6 @@
                         </tr>
                     </tfoot>
                 </table>
-            @else
-                <p>No items in your cart. <a href="{{ route('items.index') }}">Go to Menu</a></p>
             @endif
         </div>
 
