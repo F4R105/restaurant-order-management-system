@@ -14,7 +14,7 @@ class ItemController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', Auth::user());
+        Gate::authorize('viewAny', Item::class);
 
         $items = Item::all();
         return view('items.index', ['items' => $items]);
@@ -25,7 +25,7 @@ class ItemController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create', Auth::user());
+        Gate::authorize('create', Item::class);
 
         return view('items.create');
     }
@@ -35,7 +35,7 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('create', Auth::user());
+        Gate::authorize('create', Item::class);
 
         $itemData = $request->validate([
             'name' => ['required'],
@@ -56,7 +56,7 @@ class ItemController extends Controller
      */
     public function show(Item $item)
     {
-        Gate::authorize('view', Auth::user());
+        Gate::authorize('view', $item);
 
         return view('items.show', ['item' => $item]);
     }
@@ -66,7 +66,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        Gate::authorize('update', Auth::user());
+        Gate::authorize('update', $item);
 
         return view('items.edit', ['item' => $item]);
     }
@@ -76,7 +76,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        Gate::authorize('update', Auth::user());
+        Gate::authorize('update', $item);
 
         $itemData = $request->validate([
             'name' => ['required'],
@@ -93,7 +93,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        Gate::authorize('delete', Auth::user());
+        Gate::authorize('delete', $item);
 
         $item->delete();
         return redirect()->route('items.index');

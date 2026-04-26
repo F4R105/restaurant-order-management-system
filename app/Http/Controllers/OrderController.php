@@ -15,7 +15,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        Gate::authorize('viewAny', Auth::user());
+        Gate::authorize('viewAny', Order::class);
 
         $orders = Order::with('orderItems')->latest()->paginate(10);
         return view('orders.index', compact('orders'));
@@ -26,7 +26,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        Gate::authorize('create', Auth::user());
+        Gate::authorize('create', Order::class);
 
         return view('orders.create');
     }
@@ -36,7 +36,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        Gate::authorize('create', Auth::user());
+        Gate::authorize('create', Order::class);
         // This is handled by Livewire, but we keep it for consistency or fallback
     }
 
@@ -45,7 +45,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        Gate::authorize('view', Auth::user());
+        Gate::authorize('view', Order::class);
 
         $order->load('orderItems');
         return view('orders.show', compact('order'));
@@ -56,7 +56,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        Gate::authorize('edit', Auth::user());
+        Gate::authorize('edit', Order::class);
     }
 
     /**
@@ -64,7 +64,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        Gate::authorize('update', Auth::user());
+        Gate::authorize('update', Order::class);
 
         if($order->isServed()) return back()->with('error', 'Order already served!..');
 
@@ -83,7 +83,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        Gate::authorize('delete', Auth::user());
+        Gate::authorize('delete', Order::class);
         
         if($order->isServed()) return back()->with('error', 'Order already served!..');
         

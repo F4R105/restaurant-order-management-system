@@ -3,7 +3,7 @@
         @csrf
         @method('patch')
 
-        @can('edit-user-details')
+        @can('updateSensitiveInfo', $user)
             <div>
                 <div>
                     <input type="text" name="first_name" id="first_name" value="{{ $user->first_name }}">
@@ -12,15 +12,15 @@
                     <input type="text" name="last_name" id="last_name" value="{{ $user->last_name }}">
                 </div>
                 <div>
-                    <input type="text" name="phone number" id="phone_number" value="{{ $user->phone_number }}">
+                    <input type="text" name="phone_number" id="phone_number" value="{{ $user->phone_number }}">
                 </div>
                 <div>
                     <input type="email" name="email" id="email" value="{{ $user->email }}">
                 </div>
                 <div>
                     <select name="role" id="role">
-                        <option value="employee" {{ $user->role === 'employee' && 'selected' }}>Employee</option>
-                        <option value="admin" {{ $user->role === 'admin' && 'selected' }}>Admin</option>
+                        <option value="employee" {{ $user->role === 'employee' ? 'selected' : '' }}>Employee</option>
+                        <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
                     </select>
                 </div>
             </div>

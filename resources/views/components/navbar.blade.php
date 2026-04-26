@@ -43,7 +43,7 @@
     </ul>
     <div style="margin-left: auto;">
         <div>
-            <span>{{ auth()->user()->getFullName() }} as {{ auth()->user()->getRole() }}</span>
+            <a href="{{ route('users.edit', Auth::user()) }}" class="hover:text-blue-500">{{ auth()->user()->getFullName() }} as {{ auth()->user()->getRole() }}</a>
         </div>
         <x-logout-button />
     </div>

@@ -36,7 +36,15 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return true;
+        return $user->role === 'super_admin' || $user->id === $model->id;
+    }
+
+    /**
+     * Determine whether the user can update sensitive info (names, contact details).
+     */
+    public function updateSensitiveInfo(User $user, User $model): bool
+    {
+        return $user->role === 'super_admin';
     }
 
     /**
