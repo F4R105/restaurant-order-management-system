@@ -39,7 +39,7 @@
             <tfoot>
                 <tr>
                     <td colspan="2">
-                        <a href="{{ route('users.edit', $user) }}">Edit item</a>
+                        <a href="{{ route('users.edit', $user) }}" class="hover:text-blue-500">Edit user</a>
                     </td>
                 </tr>
                 @can('create', App\Models\User::class)
@@ -49,7 +49,7 @@
                                 onsubmit="return confirm('Are you sure?')">
                                 @csrf
                                 @method('delete')
-                                <button type="submit">Delete user</button>
+                                <button type="submit" class="hover:text-orange-600 cursor-pointer">Delete user</button>
                             </form>
                         </td>
                     </tr>

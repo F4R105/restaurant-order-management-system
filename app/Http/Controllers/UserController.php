@@ -73,6 +73,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         Gate::authorize('update', Auth::user());
+
+        return view('users.edit', ['user' => $user]);
     }
 
     /**
@@ -81,6 +83,12 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         Gate::authorize('update', Auth::user());
+
+        dd($request->all());
+
+        $user->update($request->all());
+
+        return redirect()->route('users.show', $user)->with('success', 'User updated successfully');
     }
 
     /**

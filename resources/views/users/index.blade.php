@@ -17,7 +17,7 @@
                 @foreach ($users as $user)
                     <tr>
                         <td class="border border-gray-400"><a href="{{ route('users.show', $user) }}"
-                                class="hover:text-blue-500">{{ $user->fullName() }}</a></td>
+                                class="hover:text-blue-500">{{ $user->getFullName() }}</a></td>
                         <td class="border border-gray-400">{{ $user->getRole() }}</td>
                     </tr>
                 @endforeach

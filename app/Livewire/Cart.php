@@ -15,7 +15,7 @@ class Cart extends Component
 
     public function mount()
     {
-        $this->createdBy = auth()->user()?->fullName() ?? 'Guest';
+        $this->createdBy = auth()->user()?->getFullName() ?? 'Guest';
         
         // Load existing cart from session
         $this->orderItems = session()->get('order_cart', []);
