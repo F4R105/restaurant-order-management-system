@@ -6,6 +6,6 @@
         @error('password')
             <p style="color: red">{{ $message }}</p>
         @enderror
-        <button type="submit">Login</button>
+        <button type="submit" class="hover:text-blue-500 cursor-pointer">Login</button>
     </form>
 </x-main-layout>

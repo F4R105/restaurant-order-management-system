@@ -45,7 +45,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        Gate::authorize('view', Order::class);
+        Gate::authorize('view', $order);
 
         $order->load('orderItems');
         return view('orders.show', compact('order'));
@@ -56,7 +56,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        Gate::authorize('edit', Order::class);
+        Gate::authorize('edit', $order);
     }
 
     /**
@@ -64,7 +64,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        Gate::authorize('update', Order::class);
+        Gate::authorize('update', $order);
 
         if($order->isServed()) return back()->with('error', 'Order already served!..');
 
@@ -83,7 +83,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        Gate::authorize('delete', Order::class);
+        Gate::authorize('delete', $order);
         
         if($order->isServed()) return back()->with('error', 'Order already served!..');
         

@@ -17,21 +17,25 @@
                 </tr>
             </tbody>
             <tfoot>
-                <tr>
-                    <td colspan="2">
-                        <a href="{{ route('items.edit', $item) }}">Edit item</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <form action="{{ route('items.destroy', $item) }}" method="post"
-                            onsubmit="return confirm('Are you sure?')">
-                            @csrf
-                            @method('delete')
-                            <button type="submit">Delete item</button>
-                        </form>
-                    </td>
-                </tr>
+                @can('update', $item)
+                    <tr>
+                        <td colspan="2">
+                            <a href="{{ route('items.edit', $item) }}" class="hover:text-blue-500">Edit item</a>
+                        </td>
+                    </tr>
+                @endcan
+                @can('delete', $item)
+                    <tr>
+                        <td colspan="2">
+                            <form action="{{ route('items.destroy', $item) }}" method="post"
+                                onsubmit="return confirm('Are you sure?')">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="hover:text-orange-600 cursor-pointer">Delete item</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endcan
             </tfoot>
         </table>
     </div>

@@ -29,7 +29,7 @@ class OrderPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role === 'super_admin' || $user->role === 'admin';
+        return $user->role === 'admin';
     }
 
     /**

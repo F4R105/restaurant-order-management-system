@@ -34,12 +34,12 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3" align="right"><strong>Total:</strong></td>
+                    <td colspan="3" align="right" class="border border-gray-400"><strong>Total:</strong></td>
                     <td class="border border-gray-400"><strong>TZS {{ number_format($order->price, 0) }}/=</strong>
                     </td>
                 </tr>
-                @can('delete', $order)
-                    @if (!$order->isServed())
+                @if (!$order->isServed())
+                    @can('delete', $order)
                         <tr>
                             <td colspan="4">
                                 <form action="{{ route('orders.destroy', $order) }}" method="post">
@@ -49,8 +49,8 @@
                                 </form>
                             </td>
                         </tr>
-                    @endif
-                @endcan
+                    @endcan
+                @endif
             </tfoot>
         </table>
     </div>
@@ -66,4 +66,13 @@
             </div>
         @endif
     @endcan
+
+    @if ($order->isServed())
+        <div>
+            <form action="#" method="post">
+                @csrf
+                <button type="submit" class="hover:text-blue-500 cursor-pointer">Print invoice</button>
+            </form>
+        </div>
+    @endif
 </x-auth-layout>

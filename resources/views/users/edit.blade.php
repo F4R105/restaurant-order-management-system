@@ -17,12 +17,14 @@
                 <div>
                     <input type="email" name="email" id="email" value="{{ $user->email }}">
                 </div>
-                <div>
-                    <select name="role" id="role">
-                        <option value="employee" {{ $user->role === 'employee' ? 'selected' : '' }}>Employee</option>
-                        <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
-                    </select>
-                </div>
+                @if (!auth()->user()->role === 'super_admin')
+                    <div>
+                        <select name="role" id="role">
+                            <option value="employee" selected="{{ $user->role === 'employee' }}">Employee</option>
+                            <option value="admin" selected="{{ $user->role === 'admin' }}">Admin</option>
+                        </select>
+                    </div>
+                @endif
             </div>
         @endcan
 

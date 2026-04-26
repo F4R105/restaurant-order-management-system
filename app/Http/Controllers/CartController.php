@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -10,7 +11,7 @@ class CartController extends Controller
 {
     public function add(Item $item)
     {
-        if(!Gate::allows('create-order')) return back()->with('error', 'Access denied');
+        Gate::authorize('create', Order::class);
 
         $cart = session()->get('order_cart', []);
         
