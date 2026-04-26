@@ -1,0 +1,7 @@
+- cart should not be shared across users i.e each admin should have his/her own cart
+- cart counter should count items instead of quantity
+- format helper: price (commas & currency), datetime
+- pagination
+- filter: orders (e.g pending orders, served by employee), users (e.g role)
+- ordering: order items by price, created_at
+- print invoice: automatically after serving order & anytime after that
