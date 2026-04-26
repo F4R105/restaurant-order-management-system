@@ -38,7 +38,7 @@
                     <td class="border border-gray-400"><strong>TZS {{ number_format($order->price, 0) }}/=</strong>
                     </td>
                 </tr>
-                @can('delete', App\Models\Order::class)
+                @can('delete', $order)
                     @if (!$order->isServed())
                         <tr>
                             <td colspan="4">
