@@ -2,10 +2,6 @@
     <div>
         <h1 class="font-bold">Orders List</h1>
 
-        @if (session('success'))
-            <div style="color: green; margin: 10px 0;">{{ session('success') }}</div>
-        @endif
-
         <table class="table-auto border-collapse border border-gray-400">
             <thead>
                 <tr>

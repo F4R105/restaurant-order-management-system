@@ -5,7 +5,7 @@
         <input type="number" name="unit_price" id="unit_price" placeholder="Unit price" value="{{ old('unit_price') }}"
             required>
         @error('unit_price')
-            <p style="color: red">{{ $messaege }}</p>
+            <p style="color: red">{{ $message }}</p>
         @enderror
         <button type="submit">Add item</button>
     </form>

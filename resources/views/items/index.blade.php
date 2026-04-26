@@ -3,10 +3,6 @@
         <h1 class="font-bold">Items List</h1>
         <a href="{{ route('items.create') }}" class="hover:text-blue-500">Add new item</a>
 
-        @if (session('success'))
-            <div style="color: green; margin: 10px 0;">{{ session('success') }}</div>
-        @endif
-
         <table class="border">
             <thead>
                 <tr>
