@@ -31,6 +31,7 @@ Route::controller(OrderController::class)->middleware('auth')->group(function ()
     Route::get('/orders/create', 'create')->name('orders.create');
     Route::post('/orders/store', 'store')->name('orders.store');
     Route::patch('/orders/{order}', 'update')->name('orders.update');
+    Route::delete('/orders/{order}', 'destroy')->name('orders.destroy');
 });
 
 Route::controller(UserController::class)->middleware('auth')->group(function () {
