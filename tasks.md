@@ -5,9 +5,9 @@
 - pagination
 - filter: orders (e.g pending orders, served by employee), users (e.g role)
 - ordering: order items by price, created_at
-- dashboard: view pending orders count, admin count, employee count, sales etc
 
 
 *completed*
 - pending order counter for employee
 - print invoice: automatically after serving order & anytime after that
+- dashboard: view pending orders count, admin count, employee count, sales etc
