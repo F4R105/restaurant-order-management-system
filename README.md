@@ -14,7 +14,7 @@
 - System can have more than one admin, registered to the system by super admin
 - Admins create orders
 
-#### Super Admin
+#### Employee
 - System can have more than one employee, registered to the system by super admin
 - Employees serve orders
 
