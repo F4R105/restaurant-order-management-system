@@ -17,7 +17,7 @@ class CartCounter extends Component
     #[On('cart-updated')]
     public function updateCount()
     {
-        $cart = session()->get('order_cart', []);
+        $cart = session()->get('order_cart_' . auth()->id(), []);
         $this->count = collect($cart)->sum('quantity');
     }
 

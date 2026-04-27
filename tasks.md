@@ -1,5 +1,4 @@
 *incomplete*
-- pending order counter for employee
 - cart should not be shared across users i.e each admin should have his/her own cart
 - cart counter should count items instead of quantity
 - format helper: price (commas & currency), datetime
@@ -10,4 +9,5 @@
 
 
 *completed*
+- pending order counter for employee
 - print invoice: automatically after serving order & anytime after that

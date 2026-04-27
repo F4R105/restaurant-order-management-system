@@ -98,7 +98,7 @@ class OrderController extends Controller
     {
         Gate::authorize('create', Order::class);
 
-        $cart = session()->get('order_cart', []);
+        $cart = session()->get('order_cart_' . Auth::id(), []);
 
         $currentQuantity = 0;
         $found = false;
@@ -119,7 +119,7 @@ class OrderController extends Controller
             ];
         }
 
-        session()->put('order_cart', $cart);
+        session()->put('order_cart_' . Auth::id(), $cart);
 
         return redirect()->route('items.index')->with('success', "{$currentQuantity}x {$item->name} added in cart.");
     }
