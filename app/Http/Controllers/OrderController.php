@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrderController extends Controller
 {
@@ -66,16 +67,57 @@ class OrderController extends Controller
     {
         Gate::authorize('update', $order);
 
-        if($order->isServed()) return back()->with('error', 'Order already served!..');
+        if ($order->isServed()) return back()->with('error', 'Order already served!..');
 
         $updated = $order->update([
             'served_by' => $request->user()->getFullName(),
             'served_at' => Carbon::now()
         ]);
 
-        if(!$updated) return back()->with('error', 'Failed to serve order');
+        if (!$updated) return back()->with('error', 'Failed to serve order');
 
         return back()->with('success', 'Order served successfully');
+    }
+
+    public function invoice(Order $order)
+    {
+        Gate::authorize('view', $order);
+
+        $order->load('orderItems');
+
+        $pdf = Pdf::loadView('orders.invoice', compact('order'));
+
+        return $pdf->stream("invoice-{$order->id}.pdf");
+    }
+
+    public function addToCart(Item $item)
+    {
+        Gate::authorize('create', Order::class);
+
+        $cart = session()->get('order_cart', []);
+
+        $currentQuantity = 0;
+        $found = false;
+        foreach ($cart as &$cartItem) {
+            if ($cartItem['item_id'] == $item->id) {
+                $cartItem['quantity']++;
+                $currentQuantity = $cartItem['quantity'];
+                $found = true;
+                break;
+            }
+        }
+
+        if (!$found) {
+            $currentQuantity = 1;
+            $cart[] = [
+                'item_id' => $item->id,
+                'quantity' => $currentQuantity,
+            ];
+        }
+
+        session()->put('order_cart', $cart);
+
+        return redirect()->route('items.index')->with('success', "{$currentQuantity}x {$item->name} added in cart.");
     }
 
     /**
@@ -84,9 +126,9 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         Gate::authorize('delete', $order);
-        
-        if($order->isServed()) return back()->with('error', 'Order already served!..');
-        
+
+        if ($order->isServed()) return back()->with('error', 'Order already served!..');
+
         $order->delete();
         return redirect()->route('orders.index')->with('success', 'Order deleted');
     }

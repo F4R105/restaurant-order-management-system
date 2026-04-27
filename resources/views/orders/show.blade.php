@@ -75,9 +75,9 @@
         </div>
     @endif
 
-    <!-- @if (session('order_served'))
+    @if (session('order_served'))
         <script>
             window.open("{{ route('orders.invoice', session('order_served')) }}", '_blank');
         </script>
-    @endif -->
+    @endif 
 </x-auth-layout>

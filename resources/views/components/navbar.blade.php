@@ -21,6 +21,7 @@
                 <a href="{{ route('orders.index') }}"
                     class="{{ request()->routeIs('orders.index') || request()->routeIs('orders.show') ? 'text-blue-500' : 'text-gray-500' }}">
                     Orders
+                    <span>({{ (new App\Models\Order)->getTotalPending() }})</span>
                 </a>
             </li>
         @endcan

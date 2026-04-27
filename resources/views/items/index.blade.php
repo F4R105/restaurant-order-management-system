@@ -25,7 +25,7 @@
                         </td>
                         @can('create', App\Models\Order::class)
                             <td class="border border-gray-400">
-                                <form action="{{ route('cart.add', $item) }}" method="GET" style="display:inline;">
+                                <form action="{{ route('orders.cart.add', $item) }}" method="GET" style="display:inline;">
                                     <button type="submit" class="hover:text-blue-500 hover:cursor-pointer">Add to
                                         cart</button>
                                 </form>

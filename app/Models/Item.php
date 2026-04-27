@@ -12,4 +12,12 @@ class Item extends Model
     protected $fillable = ['name', 'unit_price'];
     
     use HasFactory;
+
+    public function getTotalItems(){
+        return $this->count();
+    }
+
+    public function getMostSoldItem(){
+
+    }
 }
