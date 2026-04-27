@@ -28,7 +28,7 @@
                 </li>
             </ul>
         </div>
-
+    
         {{-- users --}}
         @can('viewAny', App\Models\User::class)
             <div>
@@ -39,7 +39,7 @@
                 </ul>
             </div>
         @endcan
-
+    
         {{-- orders --}}
         @can('viewAny', App\Models\Order::class)
             <div>

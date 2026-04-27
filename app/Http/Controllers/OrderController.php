@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -76,7 +77,10 @@ class OrderController extends Controller
 
         if (!$updated) return back()->with('error', 'Failed to serve order');
 
-        return back()->with('success', 'Order served successfully');
+        return back()->with([
+            'success' => 'Order served successfully',
+            'order_served' => $order->id
+        ]);
     }
 
     public function invoice(Order $order)

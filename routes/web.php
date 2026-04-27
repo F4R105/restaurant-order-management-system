@@ -33,7 +33,7 @@ Route::controller(OrderController::class)->middleware('auth')->group(function ()
     Route::post('/orders/store', 'store')->name('orders.store');
     Route::patch('/orders/{order}', 'update')->name('orders.update');
     Route::get('/orders/{order}/invoice', 'invoice')->name('orders.invoice');
-    Route::get('/orders/cart/{item}/add', 'add')->name('orders.cart.add');
+    Route::get('/orders/cart/{item}/add', 'addToCart')->name('orders.cart.add');
     Route::delete('/orders/{order}', 'destroy')->name('orders.destroy');
 });
 
