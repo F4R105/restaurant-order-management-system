@@ -8,5 +8,6 @@
             <p style="color: red">{{ $message }}</p>
         @enderror
         <button type="submit" class="hover:text-blue-500 cursor-pointer">Add item</button>
+        <x-form-errors />
     </form>
 </x-auth-layout>

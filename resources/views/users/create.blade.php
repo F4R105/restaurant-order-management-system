@@ -35,5 +35,6 @@
         <div>
             <button type="submit" class="hover:text-blue-500 cursor-pointer">Add user</button>
         </div>
+        <x-form-errors />
     </form>
 </x-auth-layout>
