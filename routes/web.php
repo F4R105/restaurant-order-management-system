@@ -5,6 +5,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('login');
@@ -43,6 +44,8 @@ Route::controller(UserController::class)->middleware('auth')->group(function () 
     Route::get('/users/{user}', 'show')->name('users.show');
     Route::delete('/users/{user}', 'destroy')->name('users.destroy');
 });
+
+Route::get('/orders/{order}/invoice', [InvoiceController::class, 'download'])->name('orders.invoice')->middleware('auth');
 
 Route::controller(CartController::class)->middleware('auth')->group(function () {
     Route::get('/cart/add/{item}', 'add')->name('cart.add');

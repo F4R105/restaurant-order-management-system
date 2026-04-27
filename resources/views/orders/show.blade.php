@@ -69,10 +69,15 @@
 
     @if ($order->isServed())
         <div>
-            <form action="#" method="post">
-                @csrf
-                <button type="submit" class="hover:text-blue-500 cursor-pointer">Print invoice</button>
-            </form>
+            <a href="{{ route('orders.invoice', $order) }}" target="_blank" class="text-blue-500 hover:underline cursor-pointer">
+                Print invoice
+            </a>
         </div>
     @endif
+
+    <!-- @if (session('order_served'))
+        <script>
+            window.open("{{ route('orders.invoice', session('order_served')) }}", '_blank');
+        </script>
+    @endif -->
 </x-auth-layout>
