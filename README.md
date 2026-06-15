@@ -21,6 +21,8 @@
 
 ## How to run
 
+create .env file
+
 ### First terminal
 ```bash
 composer install
