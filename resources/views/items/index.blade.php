@@ -41,8 +41,8 @@
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <div class="flex items-center justify-end gap-3">
                                     <a href="{{ route('items.show', $item) }}" 
-                                       class="text-zinc-500 hover:text-zinc-900 transition-colors font-medium">
-                                        View
+                                       class="text-amber-600 hover:text-amber-700 transition-colors font-semibold">
+                                        View Item
                                     </a>
                                     @can('create', App\Models\Order::class)
                                         <form action="{{ route('orders.cart.add', $item) }}" method="GET" class="inline">

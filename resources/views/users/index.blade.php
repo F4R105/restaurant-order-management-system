@@ -23,6 +23,7 @@
                     <tr class="bg-zinc-50 border-b border-zinc-200">
                         <th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-zinc-500">User</th>
                         <th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-zinc-500">Role</th>
+                        <th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-zinc-500 text-right">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-zinc-200">
@@ -44,6 +45,14 @@
                                         {{ ucfirst($user->getRole()) }}
                                     </span>
                                 @endif
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <div class="flex items-center justify-end gap-3">
+                                    <a href="{{ route('users.show', $user) }}" 
+                                       class="text-amber-600 hover:text-amber-700 transition-colors font-semibold">
+                                        View User
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
