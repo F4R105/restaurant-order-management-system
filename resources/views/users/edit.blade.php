@@ -9,49 +9,26 @@
         <h1 class="text-3xl font-bold text-zinc-950 tracking-tight">Edit Profile</h1>
     </div>
 
-    <div class="max-w-2xl bg-white border border-zinc-200 rounded-2xl shadow-sm overflow-hidden">
-        <div class="h-1.5 bg-amber-500"></div>
-        <div class="p-8">
-            <form action="{{ route('users.update', $user) }}" method="post" class="space-y-6">
-                @csrf
-                @method('patch')
-
-                @can('updateSensitiveInfo', $user)
-                    <div class="space-y-5">
-                        <h3 class="text-base font-bold text-zinc-900 border-b border-zinc-100 pb-3">Personal Details</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <div>
-                                <label for="first_name" class="block text-sm font-medium text-zinc-700 mb-1.5">First Name</label>
-                                <input type="text" name="first_name" id="first_name" value="{{ $user->first_name }}" required
-                                    class="block w-full px-3.5 py-2.5 bg-white border border-zinc-300 rounded-xl shadow-xs placeholder-zinc-400 focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-sm transition-all duration-200">
-                            </div>
-                            <div>
-                                <label for="last_name" class="block text-sm font-medium text-zinc-700 mb-1.5">Last Name</label>
-                                <input type="text" name="last_name" id="last_name" value="{{ $user->last_name }}"
-                                    class="block w-full px-3.5 py-2.5 bg-white border border-zinc-300 rounded-xl shadow-xs placeholder-zinc-400 focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-sm transition-all duration-200">
-                            </div>
-                            <div>
-                                <label for="phone_number" class="block text-sm font-medium text-zinc-700 mb-1.5">Phone Number</label>
-                                <input type="text" name="phone_number" id="phone_number" value="{{ $user->phone_number }}" required
-                                    class="block w-full px-3.5 py-2.5 bg-white border border-zinc-300 rounded-xl shadow-xs placeholder-zinc-400 focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-sm transition-all duration-200">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-zinc-700 mb-1.5">Email Address</label>
-                                <input type="email" name="email" id="email" value="{{ $user->email }}" required
-                                    class="block w-full px-3.5 py-2.5 bg-white border border-zinc-300 rounded-xl shadow-xs placeholder-zinc-400 focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-sm transition-all duration-200">
-                                </div>
-                            
-                            @if (auth()->user()->role !== 'super_admin')
-                                <div class="sm:col-span-2">
-                                    <label for="role" class="block text-sm font-medium text-zinc-700 mb-1.5">Role</label>
-                                    <select name="role" id="role"
-                                            class="block w-full px-3.5 py-2.5 bg-white border border-zinc-300 rounded-xl shadow-xs focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-sm transition-all duration-200">
-                                        <option value="employee" {{ $user->role === 'employee' ? 'selected' : '' }}>Employee</option>
-                                        <option value="admin" {{ $user->role === 'admin' ? 'selected' : '' }}>Admin</option>
-                                    </select>
-                                </div>
-                            @endif
-                        </div>
+        @can('updateSensitiveInfo', $user)
+            <div>
+                <div>
+                    <input type="text" name="first_name" id="first_name" value="{{ $user->first_name }}">
+                </div>
+                <div>
+                    <input type="text" name="last_name" id="last_name" value="{{ $user->last_name }}">
+                </div>
+                <div>
+                    <input type="text" name="phone_number" id="phone_number" value="{{ $user->phone_number }}">
+                </div>
+                <div>
+                    <input type="email" name="email" id="email" value="{{ $user->email }}">
+                </div>
+                @if (!auth()->user()->role === 'Admin')
+                    <div>
+                        <select name="role" id="role">
+                            <option value="Chef Cooker" selected="{{ $user->role === 'Chef Cooker' }}">Employee</option>
+                            <option value="Waiter" selected="{{ $user->role === 'Waiter' }}">Admin</option>
+                        </select>
                     </div>
                 @endcan
 
