@@ -21,8 +21,8 @@
         </div>
         <div>
             *<select name="role" id="role">
-                <option value="employee">Employee</option>
-                <option value="admin">Admin</option>
+                <option value="Waiter">Waiter</option>
+                <option value="Chef Cooker">Chef Cooker</option>
             </select>
         </div>
         <div>

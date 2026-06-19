@@ -43,7 +43,7 @@ class UserController extends Controller
             'last_name' => ['string'],
             'username' => ['string', 'required'],
             'phone_number' => ['string', 'required'],
-            'role' => ['string', Rule::in(['admin', 'employee'])],
+            'role' => ['string', Rule::in(['Waiter', 'Chef Cooker'])],
             'email' => ['string', 'email', 'unique:users,email'],
             'password' => ['string', 'min:4', 'confirmed']
         ]);
@@ -95,7 +95,7 @@ class UserController extends Controller
             $rules['last_name'] = ['nullable', 'string'];
             $rules['phone_number'] = ['required', 'string'];
             $rules['email'] = ['required', 'email', Rule::unique('users')->ignore($user->id)];
-            $rules['role'] = ['required', Rule::in(['admin', 'employee', 'super_admin'])];
+            $rules['role'] = ['required', Rule::in(['Waiter', 'Chef Cooker', 'Admin'])];
         }
 
         $validatedData = $request->validate($rules);

@@ -12,7 +12,7 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->role === 'super_admin';
+        return $user->role === 'Admin';
     }
 
     /**
@@ -20,7 +20,7 @@ class UserPolicy
      */
     public function view(User $user, User $model): bool
     {
-        return $user->role === 'super_admin' || $user->id === $model->id;
+        return $user->role === 'Admin' || $user->id === $model->id;
     }
 
     /**
@@ -28,7 +28,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role === 'super_admin';
+        return $user->role === 'Admin';
     }
 
     /**
@@ -36,7 +36,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return $user->role === 'super_admin' || $user->id === $model->id;
+        return $user->role === 'Admin' || $user->id === $model->id;
     }
 
     /**
@@ -44,7 +44,7 @@ class UserPolicy
      */
     public function updateSensitiveInfo(User $user, User $model): bool
     {
-        return $user->role === 'super_admin';
+        return $user->role === 'Admin';
     }
 
     /**
@@ -52,7 +52,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        return $user->role === 'super_admin' || $user->id === $model->id;
+        return $user->role === 'Admin' || $user->id === $model->id;
     }
 
     /**

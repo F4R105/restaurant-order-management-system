@@ -1,6 +1,8 @@
 <nav
     style="border-bottom: 2px solid black; padding: 10px; margin-bottom: 20px; display: flex; align-items: center; gap: 20px;">
-    <h4 class="font-bold">Restaurant system</h4>
+    <a href="{{ auth()->check() ? route('dashboard') : route('login') }}" style="text-decoration: none; color: inherit;">
+        <h4 class="font-bold">Enea Restaurant</h4>
+    </a>
     <ul style="list-style: none; display: flex; gap: 15px; margin: 0; padding: 0;">
         <li>
             <a href="{{ route('dashboard') }}"
@@ -46,7 +48,7 @@
     </ul>
     <div style="margin-left: auto;">
         <div>
-            <a href="{{ route('users.edit', Auth::user()) }}" class="hover:text-blue-500">{{ auth()->user()->getFullName() }} as {{ auth()->user()->getRole() }}</a>
+            <a href="{{ route('users.edit', Auth::user()) }}" class="hover:text-blue-500">{{ auth()->user()->getFullName() }} as {{ auth()->user()->role }}</a>
         </div>
         <x-logout-button />
     </div>

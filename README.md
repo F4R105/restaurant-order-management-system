@@ -1,22 +1,22 @@
 # Restaurant order management system
 
 ## Description of the system (RBAC)
-- System has three user roles i.e super admin, admin and employee
+- System has three user roles i.e admin, waiter and chef cooker
 - All users can view orders
 
-#### Super Admin
-- System has only one super admin
-- Super admin manages items i.e Create, Edit and Delete items
-- Super admin manages users i.e Registers, Edit and Delete users
-- Super admin does not create or serve orders
-
 #### Admin
-- System can have more than one admin, registered to the system by super admin
+- System has only one admin
+- admin manages items i.e Create, Edit and Delete items
+- admin manages users i.e Registers, Edit and Delete users
+- admin does not create or serve orders
+
+#### Waiter
+- System can have more than one Waiter, registered to the system by admin
 - Admins create orders
 
-#### Employee
-- System can have more than one employee, registered to the system by super admin
-- Employees serve orders
+#### Chef cooker
+- System can have more than one chef cooker, registered to the system by admin
+- Chef cooker serves orders
 
 
 ## How to run

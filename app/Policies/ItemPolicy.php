@@ -13,7 +13,7 @@ class ItemPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->role === 'super_admin' || $user->role === 'admin';
+        return $user->role === 'Admin' || $user->role === 'Waiter';
     }
 
     /**
@@ -29,7 +29,7 @@ class ItemPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role === 'super_admin';
+        return $user->role === 'Admin';
     }
 
     /**
@@ -37,7 +37,7 @@ class ItemPolicy
      */
     public function update(User $user, Item $model): bool
     {
-        return $user->role === 'super_admin';
+        return $user->role === 'Admin';
     }
 
     /**
@@ -45,7 +45,7 @@ class ItemPolicy
      */
     public function delete(User $user, Item $model): bool
     {
-        return $user->role === 'super_admin';
+        return $user->role === 'Admin';
     }
 
     /**

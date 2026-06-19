@@ -19,12 +19,12 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         User::factory()->create([
-            'first_name' => 'Super',
-            'last_name' => 'Admin',
+            'first_name' => 'Admin',
+            'last_name' => 'User',
             'username' => 'admin',
-            'email' => 'super@admin.com',
+            'email' => 'admin@restaurant.com',
             'phone_number' => '0700 000 000',
-            'role' => 'super_admin'
+            'role' => 'Admin'
         ]);
 
         // Item::factory(32)->create();
