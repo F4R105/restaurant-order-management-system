@@ -30,15 +30,18 @@ class User extends Authenticatable
         ];
     }
 
-    public function getFullName(){
+    public function getFullName()
+    {
         return $this->first_name . " " . $this->last_name;
     }
 
-    public function getRole(){
-        switch($this->role){
-            case 'super_admin': return 'Super Admin';
-            case 'admin': return 'Admin';
-            case 'employee': return 'Employee';
-        }
+    public function getTotalAdmins()
+    {
+        return $this->where('role', 'Waiter')->count();
+    }
+
+    public function getTotalEmployee()
+    {
+        return $this->where('role', 'Chef Cooker')->count();
     }
 }

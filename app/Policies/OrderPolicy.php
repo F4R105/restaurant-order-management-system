@@ -29,7 +29,7 @@ class OrderPolicy
      */
     public function create(User $user): bool
     {
-        return $user->role === 'admin';
+        return $user->role === 'Waiter';
     }
 
     /**
@@ -45,7 +45,7 @@ class OrderPolicy
      */
     public function delete(User $user, Order $order): bool
     {
-        return $user->role === 'super_admin' || $user->role === 'admin';
+        return $user->role === 'Admin' || $user->role === 'Waiter';
     }
 
     /**

@@ -18,13 +18,13 @@ class Cart extends Component
         $this->createdBy = auth()->user()?->getFullName() ?? 'Guest';
         
         // Load existing cart from session
-        $this->orderItems = session()->get('order_cart', []);
+        $this->orderItems = session()->get('order_cart_' . auth()->id(), []);
     }
 
     #[On('cart-updated')]
     public function refreshCart()
     {
-        $this->orderItems = session()->get('order_cart', []);
+        $this->orderItems = session()->get('order_cart_' . auth()->id(), []);
     }
 
     public function addItem($itemId = null)
@@ -67,7 +67,7 @@ class Cart extends Component
 
     protected function syncSession()
     {
-        session()->put('order_cart', $this->orderItems);
+        session()->put('order_cart_' . auth()->id(), $this->orderItems);
     }
 
     public function submit()
@@ -106,7 +106,7 @@ class Cart extends Component
         }
 
         // Clear session after successful order
-        session()->forget('order_cart');
+        session()->forget('order_cart_' . auth()->id());
         $this->dispatch('cart-updated');
 
         return redirect()->route('orders.show', $order->id);

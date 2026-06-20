@@ -3,12 +3,13 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DashboardController;
+
 Route::view('/', 'welcome')->name('login');
-Route::view('/dashboard', 'dashboard')->name('dashboard');
+Route::view('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login')->name('auth.login');
@@ -31,6 +32,8 @@ Route::controller(OrderController::class)->middleware('auth')->group(function ()
     Route::get('/orders/{order}', 'show')->name('orders.show');
     Route::post('/orders/store', 'store')->name('orders.store');
     Route::patch('/orders/{order}', 'update')->name('orders.update');
+    Route::get('/orders/{order}/invoice', 'invoice')->name('orders.invoice');
+    Route::get('/orders/cart/{item}/add', 'addToCart')->name('orders.cart.add');
     Route::delete('/orders/{order}', 'destroy')->name('orders.destroy');
 });
 
@@ -44,6 +47,4 @@ Route::controller(UserController::class)->middleware('auth')->group(function () 
     Route::delete('/users/{user}', 'destroy')->name('users.destroy');
 });
 
-Route::controller(CartController::class)->middleware('auth')->group(function () {
-    Route::get('/cart/add/{item}', 'add')->name('cart.add');
-});
+Route::controller(CartController::class)->middleware('auth')->group(function () {});

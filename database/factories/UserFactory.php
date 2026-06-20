@@ -32,7 +32,7 @@ class UserFactory extends Factory
                 fake()->numerify('075# ### ###'),
                 fake()->numerify('062# ### ###')
             ]),
-            'role' => fake()->randomElement(['admin', 'employee']),
+            'role' => fake()->randomElement(['Waiter', 'Chef Cooker']),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
