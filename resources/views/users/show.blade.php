@@ -43,11 +43,11 @@
                         <span class="mt-1 block text-sm font-semibold">
                             @if ($user->role === 'admin' || $user->role === 'super_admin')
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">
-                                    {{ ucfirst($user->getRole()) }}
+                                    {{ ucfirst($user->role) }}
                                 </span>
                             @else
                                 <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-zinc-100 text-zinc-800">
-                                    {{ ucfirst($user->getRole()) }}
+                                    {{ ucfirst($user->role) }}
                                 </span>
                             @endif
                         </span>

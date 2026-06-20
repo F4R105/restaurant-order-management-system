@@ -38,11 +38,11 @@
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-zinc-500">
                                 @if ($user->role === 'admin' || $user->role === 'super_admin')
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-800">
-                                        {{ ucfirst($user->getRole()) }}
+                                        {{ ucfirst($user->role) }}
                                     </span>
                                 @else
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-zinc-100 text-zinc-800">
-                                        {{ ucfirst($user->getRole()) }}
+                                        {{ ucfirst($user->role) }}
                                     </span>
                                 @endif
                             </td>
