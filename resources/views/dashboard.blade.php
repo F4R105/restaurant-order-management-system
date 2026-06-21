@@ -1,7 +1,7 @@
 <x-auth-layout title="Dashboard">
     <div class="mb-8">
         <h1 class="text-3xl font-bold text-zinc-950 tracking-tight">Dashboard</h1>
-        <p class="mt-1 text-sm text-zinc-500">Welcome to the restaurant management portal.</p>
+        <p class="mt-1 text-sm text-zinc-500">Welcome to the restaurant order management portal.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -42,21 +42,34 @@
             <div class="bg-white border border-zinc-200 rounded-2xl p-6 shadow-xs flex flex-col justify-between">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <span class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Staff & Users</span>
+                        <span class="text-sm font-semibold uppercase tracking-wider text-zinc-400">Staff members</span>
                         <div class="p-2 bg-amber-50 rounded-lg text-amber-600">
                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
                         </div>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <span class="block text-2xl font-bold text-zinc-900">{{ new App\Models\User()->getTotalAdmins() }}</span>
-                            <span class="text-xs text-zinc-500">Administrators</span>
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-3 gap-2">
+                            <div>
+                                <span class="block text-lg font-bold text-zinc-900">{{ new App\Models\User()->getTotalStaff('Waiter') }}</span>
+                                <span class="text-[10px] text-zinc-500 uppercase font-semibold">Waiters</span>
+                            </div>
+                            <div>
+                                <span class="block text-lg font-bold text-emerald-600">{{ new App\Models\User()->getTotalStaff('Chef Cooker') }}</span>
+                                <span class="text-[10px] text-zinc-500 uppercase font-semibold">Chef Cookers</span>
+                            </div>
+                            <div>
+                                <span class="block text-lg font-bold text-amber-600">{{ new App\Models\User()->getTotalStaff('Cashier') }}</span>
+                                <span class="text-[10px] text-zinc-500 uppercase font-semibold">Cashiers</span>
+                            </div>
                         </div>
-                        <div>
-                            <span class="block text-2xl font-bold text-zinc-900">{{ new App\Models\User()->getTotalEmployee() }}</span>
-                            <span class="text-xs text-zinc-500">Employees</span>
+
+                        <div class="border-t border-zinc-100 pt-3">
+                            <span class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider">All staff</span>
+                            <span class="block text-xl font-extrabold text-zinc-900 mt-0.5">
+                                {{ new App\Models\User()->getTotalStaff() }}
+                            </span>
                         </div>
                     </div>
                 </div>
