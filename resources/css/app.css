@@ -5,6 +5,77 @@
 @source '../**/*.blade.php';
 @source '../**/*.js';
 
+@layer base {
+    :root {
+        /* 
+        Accent Color System
+        Modify the HSL values below to change all accent colors throughout the system.
+        
+        HSL Format: hsl(hue, saturation%, lightness%)
+        - Hue: 0-360 (color wheel: 0=red, 120=green, 240=blue, 45=amber)
+        - Saturation: 0-100% (0=gray, 100=full color)
+        - Lightness: 0-100% (0=black, 50=normal, 100=white)
+        */
+        --accent-hue: 45;
+        --accent-saturation: 94%;
+
+        /* Accent color palette - all derived from base hue and saturation */
+        --accent-50: hsl(var(--accent-hue), var(--accent-saturation), 97%);
+        --accent-100: hsl(var(--accent-hue), var(--accent-saturation), 93%);
+        --accent-200: hsl(var(--accent-hue), var(--accent-saturation), 88%);
+        --accent-300: hsl(var(--accent-hue), var(--accent-saturation), 77%);
+        --accent-400: hsl(var(--accent-hue), var(--accent-saturation), 63%);
+        --accent-500: hsl(var(--accent-hue), var(--accent-saturation), 55%);
+        --accent-600: hsl(var(--accent-hue), var(--accent-saturation), 45%);
+        --accent-700: hsl(var(--accent-hue), var(--accent-saturation), 38%);
+        --accent-800: hsl(var(--accent-hue), var(--accent-saturation), 30%);
+        --accent-900: hsl(var(--accent-hue), var(--accent-saturation), 24%);
+
+        /* Shortcuts for common use cases */
+        --accent: var(--accent-500);
+        --accent-light: var(--accent-100);
+        --accent-lighter: var(--accent-50);
+        --accent-dark: var(--accent-700);
+        --accent-darker: var(--accent-900);
+    }
+}
+
+@layer components {
+    /* Utility classes for accent color */
+    .bg-accent { @apply bg-[var(--accent-500)]; }
+    .bg-accent-50 { @apply bg-[var(--accent-50)]; }
+    .bg-accent-100 { @apply bg-[var(--accent-100)]; }
+    .bg-accent-200 { @apply bg-[var(--accent-200)]; }
+    .bg-accent-300 { @apply bg-[var(--accent-300)]; }
+    .bg-accent-400 { @apply bg-[var(--accent-400)]; }
+    .bg-accent-600 { @apply bg-[var(--accent-600)]; }
+    .bg-accent-700 { @apply bg-[var(--accent-700)]; }
+    .bg-accent-800 { @apply bg-[var(--accent-800)]; }
+    .bg-accent-900 { @apply bg-[var(--accent-900)]; }
+
+    .text-accent { @apply text-[var(--accent-500)]; }
+    .text-accent-50 { @apply text-[var(--accent-50)]; }
+    .text-accent-100 { @apply text-[var(--accent-100)]; }
+    .text-accent-200 { @apply text-[var(--accent-200)]; }
+    .text-accent-300 { @apply text-[var(--accent-300)]; }
+    .text-accent-400 { @apply text-[var(--accent-400)]; }
+    .text-accent-600 { @apply text-[var(--accent-600)]; }
+    .text-accent-700 { @apply text-[var(--accent-700)]; }
+    .text-accent-800 { @apply text-[var(--accent-800)]; }
+    .text-accent-900 { @apply text-[var(--accent-900)]; }
+
+    .border-accent { @apply border-[var(--accent-500)]; }
+    .border-accent-50 { @apply border-[var(--accent-50)]; }
+    .border-accent-100 { @apply border-[var(--accent-100)]; }
+    .border-accent-200 { @apply border-[var(--accent-200)]; }
+    .border-accent-300 { @apply border-[var(--accent-300)]; }
+    .border-accent-400 { @apply border-[var(--accent-400)]; }
+    .border-accent-600 { @apply border-[var(--accent-600)]; }
+    .border-accent-700 { @apply border-[var(--accent-700)]; }
+    .border-accent-800 { @apply border-[var(--accent-800)]; }
+    .border-accent-900 { @apply border-[var(--accent-900)]; }
+}
+
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';

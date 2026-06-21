@@ -26,7 +26,5 @@ class DatabaseSeeder extends Seeder
             'phone_number' => '0700 000 000',
             'role' => 'Admin'
         ]);
-
-        // Item::factory(32)->create();
     }
 }

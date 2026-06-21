@@ -46,6 +46,8 @@
                                 class="block w-full px-3.5 py-2.5 bg-white border border-zinc-300 rounded-xl shadow-xs focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-sm transition-all duration-200">
                             <option value="Waiter">Waiter</option>
                             <option value="Chef Cooker">Chef Cooker</option>
+                            <option value="Cashier
+                            ">Cashier</option>
                         </select>
                     </div>
                     <div>
