@@ -23,7 +23,7 @@
                     <tr class="bg-zinc-50 border-b border-zinc-200">
                         <th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-zinc-500">Item Name</th>
                         <th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-zinc-500 text-right">Unit Price</th>
-                        <th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-zinc-500 text-right">Inventory</th>
+                        {{-- <th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-zinc-500 text-right">Inventory</th> --}}
                         <th class="px-6 py-4 text-xs font-semibold uppercase tracking-wider text-zinc-500 text-right">Actions</th>
                     </tr>
                 </thead>
@@ -39,9 +39,9 @@
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-zinc-700">
                                 TZS {{ number_format($item->unit_price, 0) }}/=
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-zinc-700">
+                            {{-- <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-zinc-700">
                                 {{ $item->quantity }}
-                            </td>
+                            </td> --}}
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <div class="flex items-center justify-end gap-3">
                                     <a href="{{ route('items.show', $item) }}" 
