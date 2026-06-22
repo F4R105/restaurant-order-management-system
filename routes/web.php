@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,16 @@ Route::view('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login')->name('auth.login');
     Route::post('/logout', 'logout')->name('auth.logout');
+});
+
+Route::controller(ItemCategoryController::class)->middleware('auth')->group(function () {
+    Route::get('/item-categories', 'index')->name('item-categories.index');
+    Route::get('/item-categories/create', 'create')->name('item-categories.create');
+    Route::get('/item-categories/{itemCategory}', 'show')->name('item-categories.show');
+    Route::post('/item-categories', 'store')->name('item-categories.store');
+    Route::get('/item-categories/{itemCategory}/edit', 'edit')->name('item-categories.edit');
+    Route::put('/item-categories/{itemCategory}', 'update')->name('item-categories.update');
+    Route::delete('/item-categories/{itemCategory}', 'destroy')->name('item-categories.destroy');
 });
 
 Route::controller(ItemController::class)->middleware('auth')->group(function () {

@@ -43,7 +43,7 @@ class UserController extends Controller
             'last_name' => ['string'],
             'username' => ['string', 'required'],
             'phone_number' => ['string', 'required'],
-            'role' => ['string', Rule::in(['Waiter', 'Chef Cooker'])],
+            'role' => ['string', Rule::in(['Waiter', 'Chef Cooker', 'Cashier']), 'required'],
             'email' => ['string', 'email', 'unique:users,email'],
             'password' => ['string', 'min:4', 'confirmed']
         ]);

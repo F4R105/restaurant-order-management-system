@@ -35,13 +35,13 @@ class User extends Authenticatable
         return $this->first_name . " " . $this->last_name;
     }
 
-    public function getTotalAdmins()
+    public function getTotalStaff($role = null)
     {
-        return $this->where('role', 'Waiter')->count();
+        if (is_null($role)) {
+            return $this->whereNot('role', 'Admin')->count();
+        }
+
+        return $this->where('role', $role)->count();
     }
 
-    public function getTotalEmployee()
-    {
-        return $this->where('role', 'Chef Cooker')->count();
-    }
 }

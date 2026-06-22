@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\ItemCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -27,7 +28,7 @@ class ItemController extends Controller
     {
         Gate::authorize('create', Item::class);
 
-        return view('items.create');
+        return view('items.create', ['itemCategories' => \App\Models\ItemCategory::all()]);
     }
 
     /**
@@ -39,7 +40,8 @@ class ItemController extends Controller
 
         $itemData = $request->validate([
             'name' => ['required'],
-            'unit_price' => ['required', 'integer', 'min:0', 'max:10000']
+            'unit_price' => ['required', 'integer', 'min:0', 'max:10000'],
+            'category_id' => ['required', 'exists:item_categories,id']
         ]);
 
         $newItem = Item::create($itemData);

@@ -23,6 +23,10 @@
                         <span class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider">Unit Price</span>
                         <span class="mt-1 block text-lg font-bold text-zinc-900">TZS {{ number_format($item->unit_price, 0) }}/=</span>
                     </div>
+                    <div>
+                        <span class="block text-xs font-semibold text-zinc-400 uppercase tracking-wider">Category</span>
+                        <span class="mt-1 block text-lg font-bold text-zinc-900">{{ $item->category->name }}</span>
+                    </div>
                 </div>
 
                 <!-- Footer Actions -->

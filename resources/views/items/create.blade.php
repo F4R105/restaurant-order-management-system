@@ -15,6 +15,20 @@
             <form action="{{ route('items.store') }}" method="post" class="space-y-5">
                 @csrf
                 <div>
+                    <label for="category_id" class="block text-sm font-medium text-zinc-700 mb-1.5">Item Category</label>
+                    <select name="category_id" id="category_id" required
+                        class="block w-full px-3.5 py-2.5 bg-white border border-zinc-300 rounded-xl shadow-xs placeholder-zinc-400 focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-sm transition-all duration-200">
+                        <option value="">Select a category</option>
+                        @foreach ($itemCategories as $itemCategory)
+                            <option value="{{ $itemCategory->id }}" {{ old('category_id') == $itemCategory->id ? 'selected' : '' }}>
+                                {{ $itemCategory->name }}
+                            </option>
+                        @endforeach
+                        <a href="{{ route('item-categories.create') }}" class="text-amber-600 hover:text-amber-500">+ Add new category</a>
+                    </select>
+                </div>
+
+                <div>
                     <label for="name" class="block text-sm font-medium text-zinc-700 mb-1.5">Item Name</label>
                     <input type="text" name="name" id="name" placeholder="e.g. Grilled Chicken Wings" value="{{ old('name') }}" required
                         class="block w-full px-3.5 py-2.5 bg-white border border-zinc-300 rounded-xl shadow-xs placeholder-zinc-400 focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 text-sm transition-all duration-200">
@@ -28,6 +42,7 @@
                         <p class="mt-1.5 text-sm text-rose-600">{{ $message }}</p>
                     @enderror
                 </div>
+
 
                 <div class="pt-2">
                     <button type="submit" class="w-full flex justify-center py-2.5 px-4 border border-transparent text-sm font-semibold rounded-xl text-white bg-amber-600 hover:bg-amber-500 focus:outline-hidden focus:ring-2 focus:ring-offset-2 focus:ring-amber-600 transition-all duration-200 shadow-xs cursor-pointer">
